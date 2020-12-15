@@ -23,6 +23,11 @@ commentsDiv.appendChild(document.createElement("hr"));
 commentsDiv.appendChild(newParagraph);
 
 
+// Using templating, with insertAdjacentHTML()
+var templateToInsert = `<p>Another comment generated from JS</p> <hr/>`;
+commentsDiv.insertAdjacentHTML('beforeend', templateToInsert);
+
+
 
 
 // React to events happening in  the document

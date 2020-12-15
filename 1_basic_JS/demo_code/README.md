@@ -13,6 +13,7 @@ You should have `npm` installed on your machine (version 6 or higher recommended
 
 ```
 npm --version
+6.14.5
 ```
 
 ## Install dependencies
