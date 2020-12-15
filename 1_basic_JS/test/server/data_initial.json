@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "What in the World Is Cheese Powder?",
+      "author": "Ella Quitner",
+      "content": "Some, such as Wylie Dufresne, James Beard Award–winning chef and a father of molecular gastronomy, might say I’m late to this epiphany, like when I called to ask if he’d heard of cheese powder, a dehydrated, concentrated version of the fresh stuff.\n “Can you tell me someone who hasn’t?” he said, broaching the topic of Kraft mac and cheese packets as evidence before I could careen into my Opening Argument (a description of an eye-opening joyride I took on nuts.com after two glasses of wine).\n The cheese powder I purchased at such scale that a midsize cat could use it as a bed and the pulverized, neon flavorings of Kraft are close cousins: variations on a theme, Dufresne explained. The latter may have been laden with more unpronounceable additives and dyes historically, but it is nonetheless a form of powdered cheese."
+    },
+    {
+      "id": 2,
+      "title": "A Truly Stress-Free Pumpkin Pie for 2020",
+      "author": "Kristen Miglore",
+      "content": "It might be stressful if it wasn’t so fun, if we had a family big and proper enough that someone would care that dinnertime shot right past 6 p.m. and landed at 9.\n\n I recently moved back home to Northern California, Billy is still in New York, and neither of us is taking travel lightly this year—so this is the first Thanksgiving that the two of us lost flowers won’t be together in decades, maybe ever. Even the year Billy was living in Paris, I flew there with Jiffy Corn Muffin Mix and poultry seasoning in my suitcase for our grandmother’s stuffing, so we could feed his friends a real American Thanksgiving, the turkey acquired sweatily at a local butcher in muted French (“dinde … DIN-de?”).\n\n For all of us missing the people we love, whose Thanksgivings this year aren’t what we’d hoped, I wish us all long Zoom calls and new traditions, and recipes that will give us comfort—and also give us a break."
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "author": "Sean",
+      "content": "My husband has told me that my muffins are boring  that I should step up my game while he is stuffing an orange cranberry muffin in his face so am going to bake some pumpkin cheesecake",
+      "articleId": 1
+    }
+  ]
+}
