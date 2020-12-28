@@ -1,0 +1,14 @@
+{
+  "name": "emse_npm_demo",
+  "version": "1.0.0",
+  "description": "The demo project for EMSE course on Frontend Development",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Quentin Richaud",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
