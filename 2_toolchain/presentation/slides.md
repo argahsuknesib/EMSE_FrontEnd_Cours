@@ -158,7 +158,7 @@ Scripts are useful for :
 
 # Exercise : setup NPM for this project
 
-Go into the folder `3_npm_exercise`. Setup of the project : we want to make a small HTTP server with NodeJS,
+Go into the folder `example/3_npm_exercise`. Setup of the project : we want to make a small HTTP server with NodeJS,
 which will serve a Single Page Application. 
 
 For this to work : we put static assets files (HTML, JS, CSS, images, fonts)
@@ -176,3 +176,109 @@ We put the server code under the directory `/server`, it has only one source fil
 - Analyse the server code `server/index.js` to determine which dependencies are needed
 - Install the dependencies with `npm install` (check that your package.json is updated)
 - Add a script to your `package.json` in order to be able to launch the server with the command `npm run start`
+
+---
+
+# But what about frontend?
+
+NodeJS tools will help us to process our client javascript code, before shipping it to the browser.
+
+---
+
+# JS Transpilation
+
+Problems : 
+
+- New versions of JS (ES6, and ES7+) are not supported by browsers
+- It's hard to code using only old features 
+- It's pointless to have a language that can't evolve before of browser support
+
+Solution :
+
+Transpilation. The act of transforming ES6 (or newer version) code, into ES5 code.
+
+---
+
+# Compilation vs Transpilation
+
+Compilation : translate code written in a programming language into machine code
+
+Transpilation : translate code written in a programming language into code written in another programming 
+language 
+
+---
+
+# Transpilation into JS
+
+Since browsers can only understand javascript, if we want to develop frontend code in another language,
+it is possible using a transpiler that will translate that language into javascript to ship to the browser.
+
+Examples : 
+
+- Typescript : A strongly typed language, that looks like javascript with types
+- CoffeeScript : a language that looks like ruby and transpiles to javascript
+
+---
+
+# Babel 
+
+The "universal" javascript transpiler. It goal is to transpile any newer version of Javascript (ES6, ES7 and +) into
+older versions of Javascript.
+
+Example : 
+
+      // ES6 
+      let name = 'Bob'; 
+      let a = () => {
+        console.log(`Hello ${name}`);
+      };
+
+
+If configured to transpile down to ES5, Babel will output : 
+
+
+      // ES5
+      var name = 'Bob';
+      var a = function() {
+        console.log("Hello ".concat(name));
+      } 
+        
+
+---
+
+# Using Babel
+
+- install it via `npm` : `npm instal @babel/core @babel/cli @babel/preset-env`
+
+Babel is an npm package with a Command Line utility, which can be called in 2 ways :
+
+- `./node_modules/.bin/babel`
+- Using the `npx` utility (install on your machine) : `npx babel` (this is just a shortcut to the first option)
+
+Configure babel by creating a `babel.config.js` file at the root of the directory :
+
+
+    module.exports = {
+      "presets": ["@babel/preset-env"]
+    }
+
+Run : `npx babel src/client -d dist`, this will transpile any js file from `src/client` and output it 
+into `dist/`.
+
+---
+
+# Setting up npm scripts
+
+
+    "scripts": {
+      "build": "babel src/client -d dist",
+      "start": "npm run build && node src/server/index.js"
+    }
+
+
+Now this is our workflow :
+
+- we don't write our client code directly into the `dist/` directory (in fact, this directory should not be versionned)
+- we write our code under `src/client/`
+- the `npm run build` command builds our client code into the `dist/` directory
+- the `npm run start` command builds the client code **and** starts our server which will serve the code in the `dist/` directory

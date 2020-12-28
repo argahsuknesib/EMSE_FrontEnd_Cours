@@ -1300,7 +1300,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/13
+              1/20
             </aside>
           </footer>
         </div>
@@ -1334,7 +1334,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              2/13
+              2/20
             </aside>
           </footer>
         </div>
@@ -1366,7 +1366,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              3/13
+              3/20
             </aside>
           </footer>
         </div>
@@ -1411,7 +1411,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              4/13
+              4/20
             </aside>
           </footer>
         </div>
@@ -1455,7 +1455,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              5/13
+              5/20
             </aside>
           </footer>
         </div>
@@ -1492,7 +1492,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              6/13
+              6/20
             </aside>
           </footer>
         </div>
@@ -1526,7 +1526,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              7/13
+              7/20
             </aside>
           </footer>
         </div>
@@ -1570,7 +1570,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              8/13
+              8/20
             </aside>
           </footer>
         </div>
@@ -1600,7 +1600,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              9/13
+              9/20
             </aside>
           </footer>
         </div>
@@ -1641,7 +1641,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              10/13
+              10/20
             </aside>
           </footer>
         </div>
@@ -1682,7 +1682,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              11/13
+              11/20
             </aside>
           </footer>
         </div>
@@ -1696,7 +1696,7 @@ aside {
             <header><h1>Exercise : setup NPM for this project</h1></header>
             
             
-            <section><p>Go into the folder <code>3_npm_exercise</code>. Setup of the project : we want to make a small HTTP server with NodeJS,
+            <section><p>Go into the folder <code>example/3_npm_exercise</code>. Setup of the project : we want to make a small HTTP server with NodeJS,
 which will serve a Single Page Application. </p>
 <p>For this to work : we put static assets files (HTML, JS, CSS, images, fonts)
 into a folder <code>/dist</code>. The HTTP server must follow this logic : </p>
@@ -1720,7 +1720,7 @@ into a folder <code>/dist</code>. The HTTP server must follow this logic : </p>
             </aside>
             
             <aside class="page_number">
-              12/13
+              12/20
             </aside>
           </footer>
         </div>
@@ -1754,7 +1754,272 @@ into a folder <code>/dist</code>. The HTTP server must follow this logic : </p>
             </aside>
             
             <aside class="page_number">
-              13/13
+              13/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-14">
+          <div class="inner">
+            
+            <header><h1>But what about frontend?</h1></header>
+            
+            
+            <section><p>NodeJS tools will help us to process our client javascript code, before shipping it to the browser.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-15">
+          <div class="inner">
+            
+            <header><h1>JS Transpilation</h1></header>
+            
+            
+            <section><p>Problems : </p>
+<ul>
+<li>New versions of JS (ES6, and ES7+) are not supported by browsers</li>
+<li>It's hard to code using only old features </li>
+<li>It's pointless to have a language that can't evolve before of browser support</li>
+</ul>
+<p>Solution :</p>
+<p>Transpilation. The act of transforming ES6 (or newer version) code, into ES5 code.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-16">
+          <div class="inner">
+            
+            <header><h1>Compilation vs Transpilation</h1></header>
+            
+            
+            <section><p>Compilation : translate code written in a programming language into machine code</p>
+<p>Transpilation : translate code written in a programming language into code written in another programming 
+language </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-17">
+          <div class="inner">
+            
+            <header><h1>Transpilation into JS</h1></header>
+            
+            
+            <section><p>Since browsers can only understand javascript, if we want to develop frontend code in another language,
+it is possible using a transpiler that will translate that language into javascript to ship to the browser.</p>
+<p>Examples : </p>
+<ul>
+<li>Typescript : A strongly typed language, that looks like javascript with types</li>
+<li>CoffeeScript : a language that looks like ruby and transpiles to javascript</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-18">
+          <div class="inner">
+            
+            <header><h1>Babel</h1></header>
+            
+            
+            <section><p>The "universal" javascript transpiler. It goal is to transpile any newer version of Javascript (ES6, ES7 and +) into
+older versions of Javascript.</p>
+<p>Example : </p>
+<pre><code>  // ES6 
+  let name = 'Bob'; 
+  let a = () =&gt; {
+    console.log(`Hello ${name}`);
+  };
+</code></pre>
+<p>If configured to transpile down to ES5, Babel will output : </p>
+<pre><code>  // ES5
+  var name = 'Bob';
+  var a = function() {
+    console.log("Hello ".concat(name));
+  }
+</code></pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-19">
+          <div class="inner">
+            
+            <header><h1>Using Babel</h1></header>
+            
+            
+            <section><ul>
+<li>install it via <code>npm</code> : <code>npm instal @babel/core @babel/cli @babel/preset-env</code></li>
+</ul>
+<p>Babel is an npm package with a Command Line utility, which can be called in 2 ways :</p>
+<ul>
+<li><code>./node_modules/.bin/babel</code></li>
+<li>Using the <code>npx</code> utility (install on your machine) : <code>npx babel</code> (this is just a shortcut to the first option)</li>
+</ul>
+<p>Configure babel by creating a <code>babel.config.js</code> file at the root of the directory :</p>
+<pre><code>module.exports = {
+  "presets": ["@babel/preset-env"]
+}
+</code></pre>
+<p>Run : <code>npx babel src/client -d dist</code>, this will transpile any js file from <code>src/client</code> and output it 
+into <code>dist/</code>.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/20
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-20">
+          <div class="inner">
+            
+            <header><h1>Setting up npm scripts</h1></header>
+            
+            
+            <section><pre><code>"scripts": {
+  "build": "babel src/client -d dist",
+  "start": "npm run build &amp;&amp; node src/server/index.js"
+}
+</code></pre>
+<p>Now this is our workflow :</p>
+<ul>
+<li>we don't write our client code directly into the <code>dist/</code> directory (in fact, this directory should not be versionned)</li>
+<li>we write our code under <code>src/client/</code></li>
+<li>the <code>npm run build</code> command builds our client code into the <code>dist/</code> directory</li>
+<li>the <code>npm run start</code> command builds the client code <strong>and</strong> starts our server which will serve the code in the <code>dist/</code> directory</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/20
             </aside>
           </footer>
         </div>
@@ -1843,6 +2108,48 @@ into a folder <code>/dist</code>. The HTTP server must follow this logic : </p>
       <tr id="toc-row-13">
         <th><a href="#slide13">Exercise : setup NPM for this project</a></th>
         <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">But what about frontend?</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">JS Transpilation</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Compilation vs Transpilation</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Transpilation into JS</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Babel</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Using Babel</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Setting up npm scripts</a></th>
+        <td><a href="#slide20">20</a></td>
       </tr>
       
       
