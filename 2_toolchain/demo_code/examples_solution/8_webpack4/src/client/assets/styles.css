@@ -1,0 +1,10 @@
+.comments.hidden {
+  display: none;
+}
+
+.email-button {
+  height: 40px;
+  width: 40px;
+  background: url('./email.png');
+  background-size: contain;
+}

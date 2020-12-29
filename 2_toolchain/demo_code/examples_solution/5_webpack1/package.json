@@ -1,0 +1,19 @@
+{
+  "name": "5_webpack1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist/ && mkdir dist/ && cp static_assets/* dist/ && webpack",
+    "start": "npm run build && node src/server/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash-es": "^4.17.20",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0"
+  }
+}
