@@ -191,7 +191,7 @@ Problems :
 
 - New versions of JS (ES6, and ES7+) are not supported by browsers
 - It's hard to code using only old features 
-- It's pointless to have a language that can't evolve before of browser support
+- It's pointless to have a language that can't evolve because of browser support
 
 Solution :
 
@@ -282,3 +282,231 @@ Now this is our workflow :
 - we write our code under `src/client/`
 - the `npm run build` command builds our client code into the `dist/` directory
 - the `npm run start` command builds the client code **and** starts our server which will serve the code in the `dist/` directory
+
+---
+
+# Babel
+
+Babel has many more configuration option. To go further, you can check the official babel documentation : <https://babeljs.io/docs/en/>
+
+---
+
+# Introducing Webpack
+
+- Webpack is a bundler for JS client code
+- It takes several code sources (that depend on one another, through JS import/exports), and bundles them into a 
+  single source file
+- It is very flexible and can apply a chain of loaders on the input files (for example : babel-loader will
+  transpile files with babel before they are bundled)
+
+---
+
+# Webpack bundling
+
+![](./imgs/webpack1.png)
+
+---
+
+# Webpack bundling demo
+
+Go into `examples_solution/5_webpack1`.
+
+- The `dist/` directory is not versionned. It will be generated again at each build
+- Client source files that aren't processed by webpack are stored in `static_assets/` and copied to `dist/` on build
+- Client source files bundled by webpack are stored under `src/client/`.
+- Server source files are stored under `src/server/`.
+
+Webpack is configured with the file `webpack.config.js`.
+
+What our configuration will do on build : 
+
+- Copy static files from `static_assets/` into `dist/`
+- Webpack will take the entry point `src/client/main.js`. 
+- It bundles the imports made by `main.js` (and further import from these dependencies) : `sayHello.js` and npm dependency `lodash-es`
+- It creates an output bundle file `dist/main.bundle.js`
+- See that our `index.html` links to `main.bundle.js`
+
+---
+
+# Webpack bundling demo
+
+Run yourself webpack : `npx webpack` or `./node_modules/.bin/webpack`. 
+
+Our run through the configured npm command : `npm run build`
+
+Now inspect the generated file : `/dist/main.bundle.js`.
+
+Start the nodeJS server with `npm run start` (this will build again), and see the browser console output in <http://localhost:3000>
+
+You can turn off minification to see what the bundle look like.
+
+---
+
+# Webpack bundling demo
+
+What are the advantages of webpack :
+
+- For browser that don't support ES modules (prior to 2015) : allow to develop using ES modules, and give the browser only one source file
+  (also avoid ES5 global namespacing conflicts)
+- Even with browsers supporting modules : give only one source file that is optimized
+- Many optimizations possible (code translation, minification…)
+- Tree shaking : we only bundled the `flatten` function of `lodash-es` instead of having the browser download the whole `lodash` library
+- We can process any kind of file through additionnal loaders
+
+
+---
+
+# Adding loaders 
+
+![](./imgs/webpack2.png)
+
+---
+
+# Adding loaders: babel loader
+
+Go into `examples_solution/6_webpack2`.
+
+See this section of `webpack.config.js` : 
+
+    !Javascript
+    module: {
+      rules: [
+        { test: /\.js$/, use: 'babel-loader' }
+      ]
+    },
+
+
+It means, for each module ("module" is any file imported from the depencency tree built from webpack entrypoint), that
+matches the regex `/\.js/`, apply the loader `babel-loader`.
+
+The loader `babel-loader` will process the file with `babel`, using the configuration found at `babel.config.js`.
+
+Run `npm run build`, and see the output file `dist/main.bundle.js`, and see that `let` keywords have been replaced with `var`.
+
+---
+
+# Loaders for any type of file
+
+Loaders allow us to import, from the JS entrypoint, any kind of file. If the right loader is applied, it will take these modules and transform into
+a JS module, to include to the bundle.
+
+Each loader will document what it does with the input module.
+
+For example `style-loader` allow us to import CSS files as modules, it will generate a JS module that inserts at runtime the CSS rules into a 
+`<style>` tag.
+
+---
+
+# Loader for CSS : an example
+
+Go into the `examples_solution/7_webpack3` directory.
+
+Here, we removed the `style.css` file from `static_assets/`. Instead we want this file to be processed by webpack.
+
+
+    !javascript
+    // main.js
+    import styles from './assets/styles.css';
+
+
+    // webpack.config.js
+    module: [{
+      test: /\.css$/i,
+      use: ['style-loader', 'css-loader']
+    }]
+    
+
+---
+
+# Loader for CSS : example
+
+- Webpack takes the entrypoint `main.js`
+- It parses the import for `"assets/styles.css"`.
+- It applies the matching module rule `/\.css$/`
+- It applies the 2 loader in the chain, in reverse order (that's webpack convention)
+- `css-loader` : analyses the CSS file, and if `url()` instructions are present, it adds the pointed files into webpack  module dependency tree
+- `style-loader` : generate JS code that will generate a `<style>` tag into the HTML document, and inject all the CSS of the file
+- The `styles` object imported in our `main.js` is just an empty object
+
+---
+
+# Webpack
+
+There is an infinity of possibility thanks to loaders. Webpack becomes the swiss-knife of frontend development : we can process
+any file (JS code, CSS, images, fonts, …) needed by our frontend in webpack.
+
+We can invent new file formats, and write loaders to process them into JS assets understandable by the browser.
+
+That's what does Vue.js framework : it has its own `.vue` file format, which are processed by their loader `vue-loader`.
+
+--- 
+
+# Webpack plugins
+
+In addition to loaders, we can use plugins. Plugins allow to generate more side effects to processed files. A loader can only
+transform any file into a JS file. A plugin can interact with processed files to do anything it wants.
+
+For example : we want to remove the npm script that does `cp static_assets/* dist/`, we can use several webpack plugins that
+will detect all assets imported from `main.js` and copy them into `dist/`.
+
+---
+
+# A more complete webpack example
+
+Go into the directory `examples_solution/7_webpack4`.
+
+- See the use of the plugin `html-webpack-plugin`
+- The interest of generating files under `dist/` with a hash in their name (to avoid caching problems)
+- This time, we don't use `style-loader` for CSS, but the plugin `mini-css-extract-plugin`, coupled with its loader
+- We also have a loader for image files. Can you see how the image `email.png` ends up include into the webpack dependency tree ? What
+  is the effect of `file-loader` on this file ?
+
+
+---
+
+# A few examples of what a complete webpack config can do 
+
+- Having different behavior between builds in development mode and production modes (exemple of CSS loading & minification)
+- Having a live server for development, that automatically reloads and rebuilds when you change source code
+- Transpiling stylesheets from more evolved languages (for example SASS to CSS, or postCSS to CSS)
+- Add syntax checker when building : ESLint, Prettier…
+- Transforming CSS classes names to namespaced class names to avoid global CSS namespace collision
+
+---
+
+# Finally : source maps
+
+Problem : webpack transformations are great, but we can't debug our code anymore in chrome developper tools.
+
+Solution : generate "source maps" : additional information that maps the generated code to your original source file. Chrome devtools
+understand these file and will you show in the debugger your original code, even though it is running the code generated by webpack.
+
+See the example in `examples_solution/9_webpack_sourcemaps`. We have added this line to our `webpack.config.js` :
+
+    devtool: 'eval-source-map',
+
+Notice how the format of `dist/main.bundle.js` has changed. That's webpack way to make source maps. There are several options possible
+to include source maps, they are all a compromise between : 
+
+- generation time
+- quality of original source
+
+---
+
+# Source maps
+
+Launch `npm run start`, and with Chrome Developper Tools, see that you can but a breakpoint into your original 
+`main.js`, although it is `main.bundle.js` that is running.
+
+---
+
+# Webpack conclusion 
+
+Webpack is now an essential tool in the world of frontend development.
+
+The official documentation is excellent : <https://webpack.js.org/concepts/>
+
+It is recommended to use existing, boilerplate, webpack configurations, to bootstrap your project.
+
+There are many tools, (some of them provided by the big JS frameworks : angular, react, vue), that can generate
+an out of the box working webpack configuration for you.
