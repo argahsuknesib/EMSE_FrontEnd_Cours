@@ -368,3 +368,99 @@ Install axios
 
 `npm install axios`
 
+Run your backend server locally, or use the online backend server if you have deployed it.
+
+I will run the backend locally on <http://localhost:8090>
+
+Note : your backend **must** be configured to send `Access-Control-Allow-Origin: *` headers, otherwise
+only a frontend on the same HOST than the API can access it. APIs are generally configured to do so, 
+because it is the norm to access them from different Hosts.
+
+
+---
+
+# Demo project : ajax
+
+The JS code to make an ajax request with axios :
+
+    let response = await axios.get('http://localhost:8080/windows');
+    let windows = response.data;
+
+
+Ideally, we should put the HOST into a variable that can easily be configured.
+
+Where do we put this code in our Vue component? 
+
+We want the windows list to be loaded as soon as the component is created : we will put 
+the code into a "lifecycle hook", that is a special function that Vue garantees will be called
+at certain life step of the component.
+
+I need to adapt the data format, which is different from the real API than the demo data I used.
+
+In the `WindowList` component object : 
+
+    created: async function() {
+      let response = await axios.get(`${API_HOST}/api/windows`);
+      let windows = response.data;
+      this.windows = windows;
+    }
+
+
+---
+
+# Demo project : ajax
+
+In a real world scenario, we should check the data obtained from the API, and be sure it's the expected
+format.
+
+We should also always process possible errors (e.g 500 error from the server).
+
+
+---
+
+# Demo project
+
+Step 5 : Open or close a window on clicking the "Open windows" or "Close windows"
+
+- We need to bind the "click" event
+- We need to make an ajax call `PUT /api/windows/${id}/switch`
+- We need to update our data when the request is done
+
+Problem with updating the data : the data is held in `WindowsList` but the action to switch the 
+window is done in `WindowsListItem`. In order to update the application data, we need to communicate 
+upward from `WindowsListItem` to `WindowList`.
+
+We do that using the event mechanism.
+
+---
+
+# Demo project
+
+In the child component, emitting an event : 
+
+`this.$emit('window-updated', updatedWindow)`.
+
+In the parent component, it's the same syntax than native events such as "click" : 
+
+`<windows-list-item @window-update="updateWindow"></windows-list-item>`.
+
+And the payload (`updatedWindow`) will be passed as first parameter of the handler function.
+
+---
+
+# Demo project
+
+Note : in the demo code, I chose to make the Ajax call in `WindowsListItem` to switch the window, 
+and to communicate by event the data response.
+
+I could design another system, in which on click, I communicate by event the fact that a window "switch"
+button was clicked, and make the Ajax call and the data update is the `WindowsList` component.
+
+In a real world app : 
+
+- Again, we should check for errors on our ajax call. We should check that returned data is in the expected format
+- We should handle the loading delay of the request. For example, we don't want the user to click several time
+  the button (and send several Ajax requests in band). We should disable the button on first click, and re enable it once the request has finished.
+- We could put a visual feedback (loading animation), that an asynchronous request is pending.
+
+---
