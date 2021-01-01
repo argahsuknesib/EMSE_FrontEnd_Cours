@@ -10,7 +10,7 @@ qrichaud.pro@gmail.com
 
 - Install `node` on your machine
 - Write javascript source file
-- Run it with `node yourSource.ijs`
+- Run it with `node yourSource.js`
 
 ---
 
@@ -50,7 +50,10 @@ NodeJS uses the commonJS module convention.
 
 # NodeJS : importing native API
 
-NodeJS runtime provides an API, for importing these you don't need to have third party library files
+NodeJS runtime provides a native API, for importing objects from this API you don't have
+to install third party libraries.
+
+For example, the import of `readline` below, works out of the box.
 
 <https://nodejs.org/docs/latest/api/>
 
@@ -73,10 +76,12 @@ NodeJS runtime provides an API, for importing these you don't need to have third
 
 # NodeJS : using 3rd party libraries
 
-- Example with the library `lodash` which provides utilities <https://lodash.com/>
+For using 3rd party libraries, we need a way to install them. For example with the lirbrary `lodash` which provides utilities <https://lodash.com/>.
+
 - Manual option : 
     - download the library [source file](https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js)
-    - write `require('./lodash.js')`
+    - save it among our source files, as `lodash.js`
+    - write `require('./lodash.js')` in our source file
 
 
 ---
@@ -87,8 +92,9 @@ You need to install `npm` on your machine
 
 To use `npm`, your project itself must be a npm projet : 
 
-    - setup with the command `npm init`
-    - it generates a `package.json` file at the root of your project
+
+- setup with the command `npm init`
+- it generates a `package.json` file at the root of your project
 
 
 ---
@@ -119,6 +125,9 @@ To understand how package version numbering works, see semver <https://docs.npmj
 ---
 
 # Import a dependency installed by `npm`
+
+Once we installed the library with `npm`, we can import it in our source files. This time we don't need to write a relative
+path to the library.
 
 
     !Javascript
@@ -222,7 +231,7 @@ Examples :
 
 # Babel 
 
-The "universal" javascript transpiler. It goal is to transpile any newer version of Javascript (ES6, ES7 and +) into
+The "universal" javascript transpiler. Its goal is to transpile any newer version of Javascript (ES6, ES7 and +) into
 older versions of Javascript.
 
 Example : 
@@ -423,8 +432,8 @@ Here, we removed the `style.css` file from `static_assets/`. Instead we want thi
 - Webpack takes the entrypoint `main.js`
 - It parses the import for `"assets/styles.css"`.
 - It applies the matching module rule `/\.css$/`
-- It applies the 2 loader in the chain, in reverse order (that's webpack convention)
-- `css-loader` : analyses the CSS file, and if `url()` instructions are present, it adds the pointed files into webpack  module dependency tree
+- It applies the 2 loaders in the chain, in reverse order (that's webpack convention)
+- `css-loader` : analyzes the CSS file, and if `url()` instructions are present, it adds the pointed files into webpack  module dependency tree
 - `style-loader` : generate JS code that will generate a `<style>` tag into the HTML document, and inject all the CSS of the file
 - The `styles` object imported in our `main.js` is just an empty object
 
@@ -458,8 +467,8 @@ Go into the directory `examples_solution/7_webpack4`.
 - See the use of the plugin `html-webpack-plugin`
 - The interest of generating files under `dist/` with a hash in their name (to avoid caching problems)
 - This time, we don't use `style-loader` for CSS, but the plugin `mini-css-extract-plugin`, coupled with its loader
-- We also have a loader for image files. Can you see how the image `email.png` ends up include into the webpack dependency tree ? What
-  is the effect of `file-loader` on this file ?
+- We also have a loader for image files. Can you see how the image `email.png` ends up included into the webpack dependency tree? What
+  is the effect of `file-loader` on this file?
 
 
 ---
@@ -489,13 +498,13 @@ Notice how the format of `dist/main.bundle.js` has changed. That's webpack way t
 to include source maps, they are all a compromise between : 
 
 - generation time
-- quality of original source
+- quality of mapping to the original source
 
 ---
 
 # Source maps
 
-Launch `npm run start`, and with Chrome Developper Tools, see that you can but a breakpoint into your original 
+Launch `npm run start`, and with Chrome Developper Tools, see that you can put a breakpoint into your original 
 `main.js`, although it is `main.bundle.js` that is running.
 
 ---

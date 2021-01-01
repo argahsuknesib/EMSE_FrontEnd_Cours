@@ -1317,7 +1317,7 @@ aside {
             <section><ul>
 <li>Install <code>node</code> on your machine</li>
 <li>Write javascript source file</li>
-<li>Run it with <code>node yourSource.ijs</code></li>
+<li>Run it with <code>node yourSource.js</code></li>
 </ul></section>
             
           </div>
@@ -1425,7 +1425,9 @@ aside {
             <header><h1>NodeJS : importing native API</h1></header>
             
             
-            <section><p>NodeJS runtime provides an API, for importing these you don't need to have third party library files</p>
+            <section><p>NodeJS runtime provides a native API, for importing objects from this API you don't have
+to install third party libraries.</p>
+<p>For example, the import of <code>readline</code> below, works out of the box.</p>
 <p><a href="https://nodejs.org/docs/latest/api/">https://nodejs.org/docs/latest/api/</a></p>
 <div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="kr">const</span> <span class="nx">readline</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;readline&#39;</span><span class="p">);</span>
 <span class="lineno"> 2 </span>
@@ -1469,11 +1471,12 @@ aside {
             <header><h1>NodeJS : using 3rd party libraries</h1></header>
             
             
-            <section><ul>
-<li>Example with the library <code>lodash</code> which provides utilities <a href="https://lodash.com/">https://lodash.com/</a></li>
+            <section><p>For using 3rd party libraries, we need a way to install them. For example with the lirbrary <code>lodash</code> which provides utilities <a href="https://lodash.com/">https://lodash.com/</a>.</p>
+<ul>
 <li>Manual option : <ul>
 <li>download the library <a href="https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js">source file</a></li>
-<li>write <code>require('./lodash.js')</code></li>
+<li>save it among our source files, as <code>lodash.js</code></li>
+<li>write <code>require('./lodash.js')</code> in our source file</li>
 </ul>
 </li>
 </ul></section>
@@ -1508,9 +1511,10 @@ aside {
             
             <section><p>You need to install <code>npm</code> on your machine</p>
 <p>To use <code>npm</code>, your project itself must be a npm projet : </p>
-<pre><code>- setup with the command `npm init`
-- it generates a `package.json` file at the root of your project
-</code></pre></section>
+<ul>
+<li>setup with the command <code>npm init</code></li>
+<li>it generates a <code>package.json</code> file at the root of your project</li>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -1614,7 +1618,9 @@ aside {
             <header><h1>Import a dependency installed by <code>npm</code></h1></header>
             
             
-            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kr">const</span> <span class="nx">lodash</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lodash&#39;</span><span class="p">);</span>
+            <section><p>Once we installed the library with <code>npm</code>, we can import it in our source files. This time we don't need to write a relative
+path to the library.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kr">const</span> <span class="nx">lodash</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lodash&#39;</span><span class="p">);</span>
 <span class="lineno">2 </span>
 <span class="lineno">3 </span><span class="kd">let</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]];</span>
 <span class="lineno">4 </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lodash</span><span class="p">.</span><span class="nx">flatten</span><span class="p">(</span><span class="nx">array</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">));</span>
@@ -1903,7 +1909,7 @@ it is possible using a transpiler that will translate that language into javascr
             <header><h1>Babel</h1></header>
             
             
-            <section><p>The "universal" javascript transpiler. It goal is to transpile any newer version of Javascript (ES6, ES7 and +) into
+            <section><p>The "universal" javascript transpiler. Its goal is to transpile any newer version of Javascript (ES6, ES7 and +) into
 older versions of Javascript.</p>
 <p>Example : </p>
 <pre><code>  // ES6 
@@ -2398,8 +2404,8 @@ a JS module, to include to the bundle.</p>
 <li>Webpack takes the entrypoint <code>main.js</code></li>
 <li>It parses the import for <code>"assets/styles.css"</code>.</li>
 <li>It applies the matching module rule <code>/\.css$/</code></li>
-<li>It applies the 2 loader in the chain, in reverse order (that's webpack convention)</li>
-<li><code>css-loader</code> : analyses the CSS file, and if <code>url()</code> instructions are present, it adds the pointed files into webpack  module dependency tree</li>
+<li>It applies the 2 loaders in the chain, in reverse order (that's webpack convention)</li>
+<li><code>css-loader</code> : analyzes the CSS file, and if <code>url()</code> instructions are present, it adds the pointed files into webpack  module dependency tree</li>
 <li><code>style-loader</code> : generate JS code that will generate a <code>&lt;style&gt;</code> tag into the HTML document, and inject all the CSS of the file</li>
 <li>The <code>styles</code> object imported in our <code>main.js</code> is just an empty object</li>
 </ul></section>
@@ -2503,8 +2509,8 @@ will detect all assets imported from <code>main.js</code> and copy them into <co
 <li>See the use of the plugin <code>html-webpack-plugin</code></li>
 <li>The interest of generating files under <code>dist/</code> with a hash in their name (to avoid caching problems)</li>
 <li>This time, we don't use <code>style-loader</code> for CSS, but the plugin <code>mini-css-extract-plugin</code>, coupled with its loader</li>
-<li>We also have a loader for image files. Can you see how the image <code>email.png</code> ends up include into the webpack dependency tree ? What
-  is the effect of <code>file-loader</code> on this file ?</li>
+<li>We also have a loader for image files. Can you see how the image <code>email.png</code> ends up included into the webpack dependency tree? What
+  is the effect of <code>file-loader</code> on this file?</li>
 </ul></section>
             
           </div>
@@ -2581,7 +2587,7 @@ understand these file and will you show in the debugger your original code, even
 to include source maps, they are all a compromise between : </p>
 <ul>
 <li>generation time</li>
-<li>quality of original source</li>
+<li>quality of mapping to the original source</li>
 </ul></section>
             
           </div>
@@ -2612,7 +2618,7 @@ to include source maps, they are all a compromise between : </p>
             <header><h1>Source maps</h1></header>
             
             
-            <section><p>Launch <code>npm run start</code>, and with Chrome Developper Tools, see that you can but a breakpoint into your original 
+            <section><p>Launch <code>npm run start</code>, and with Chrome Developper Tools, see that you can put a breakpoint into your original 
 <code>main.js</code>, although it is <code>main.bundle.js</code> that is running.</p></section>
             
           </div>
