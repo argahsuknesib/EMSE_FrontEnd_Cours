@@ -53,6 +53,7 @@ The JS ecosystem is evolving (too) fast : in a year or two, maybe new frameworks
 - Can be coupled with many tool to become "framework" like
 - Many different ways of configuring a React project (so very different project architectures from one projet to another)
 - Doesn't use templates, (imperative paradigm)
+- Biggest share of the market
 
 ---
 
@@ -121,10 +122,10 @@ A Component is a HTML-like template (HTML enhanced with directives to write decl
 that contains data and functions, that works with the template.
 
 Once a component is developped, we can use it in other components with a novel HTML tag. For example, I make a component
-named `MyComponent` : I can include it in the HTML template with `<my-component></my-component>`.
+named `MyComponent` : I can include it in the HTML template of other Vue components with `<my-component></my-component>`.
 
-The VueJS bootstrap itself by including the root component into a DOM node (see `main.js`). Then all the application
-is done by the tree of components, that are included from the root component.
+Thue VueJS app bootstrap itself by including the root Vue component of your application into a DOM node (see `main.js`). 
+Then all the application is rendered by the tree of Vue components included from your root component.
 
 ---
 
@@ -148,6 +149,7 @@ All rendering is done by VueJS (that is frontend logic). You can see that the in
 
 One way data binding
 
+    !html
     <template>
       <div id="app">
         <header>
@@ -173,6 +175,7 @@ One way data binding
 Two ways data binding
 
 
+    !html
     <template>
       <div id="app">
         <header>
@@ -197,6 +200,8 @@ Two ways data binding
 
 Conditionnal rendering. We can put `if`s and loops in our template.
 
+
+    !html
     <template>
       <div id="app">
         <header>
@@ -223,6 +228,7 @@ Conditionnal rendering. We can put `if`s and loops in our template.
 
 Bind user events. 
 
+    !html
     <template>
       <div id="app">
         <header>
@@ -263,6 +269,7 @@ See how `App.vue` now imports Vue components `MainNavigation` and `WindowsList`,
 We need to declare the components used by a component, into its JS object 
 
 
+    !js
     import MainNavigation from './components/MainNavigation.vue';
     import WindowsList from './components/WindowsList.vue';
     
@@ -292,6 +299,7 @@ For this, we are using the `prop` mechanism.
 ---
 
 
+    !js
     Vue.component('todo-item', {
       // The todo-item component now accepts a
       // "prop", which is like a custom attribute.
@@ -302,6 +310,7 @@ For this, we are using the `prop` mechanism.
 
 .
 
+    !html
     <div id="app-7">
       <!--
         Now we provide each todo-item with the todo object
@@ -333,7 +342,7 @@ Note :
 
 - To use the `v-for` directive : we need to apply a unique `:key` prop to each element of the loop (we
   often use the `id` property of the objects we are looping on)
-- `v-for="window in windows` creates a `window` variable (iterator) accessible on elements of the for loop
+- `v-for="window in windows"` creates a `window` variable (iterator) accessible on elements of the for loop
 - In the `WindowsListItem` template, we can use `{{window.name}}`, a prop is accessible like a data property
 - In `WindowsListItem` we want to conditionnally apply a class (for the "open" or "closed" status), we use 
   the `:class` directive
@@ -358,7 +367,7 @@ Step 4 : Get real data from the backend through the HTTP API
 In order to get data from the backend, we are going to use a small library to easily do Ajax : axios.
 
 Note : this is one of the difference with a full fledged framework like Angular. Angular has already a built-in 
-tool for ajax request. Vue is more modular, and let you use your own ajax tooling.
+tool for ajax requests. Vue is more modular, and let you use your own ajax tooling.
 
 ---
 
@@ -383,6 +392,7 @@ because it is the norm to access them from different Hosts.
 
 The JS code to make an ajax request with axios :
 
+    !js
     let response = await axios.get('http://localhost:8080/windows');
     let windows = response.data;
 
@@ -399,6 +409,8 @@ I need to adapt the data format, which is different from the real API than the d
 
 In the `WindowList` component object : 
 
+
+    !js
     created: async function() {
       let response = await axios.get(`${API_HOST}/api/windows`);
       let windows = response.data;
@@ -413,7 +425,11 @@ In the `WindowList` component object :
 In a real world scenario, we should check the data obtained from the API, and be sure it's the expected
 format.
 
-We should also always process possible errors (e.g 500 error from the server).
+We should also always process possible errors (e.g 500 error from the server), and display visual feedback 
+when things are not working as expected. (For example : if you stop the backend, and still load the frontend,
+it should display something like "Windows list can't be loaded").
+
+We should also put some visual feedback when the requests are pending (loading animations).
 
 
 ---
@@ -464,3 +480,66 @@ In a real world app :
 - We could put a visual feedback (loading animation), that an asynchronous request is pending.
 
 ---
+
+
+# Assignment
+
+The assignment is due on monday, January the 18th.
+
+You will work in groups of 3. Register your groups of work here : <https://docs.google.com/spreadsheets/d/16LaaPem10MlZlZ5mOGlRzWxZM9DHsk24gNPkUaN2oz8/edit#gid=0>
+
+You will build a frontend, that will use the backend you made in the course of Guillaume Ehret. Since you developped different backends,
+you may choose one implementation of your work team, to build your frontend upon it.
+
+You may use the example project provided in this course as a base for your work.
+
+---
+
+# Assignment
+
+Mandatory functionalities for your frontend : 
+
+- Implement the functionality of the "Delete window" button
+- Add a form to the windows list page that allow the creation of new windows
+- Implement all these functionalities for Rooms (listing rooms, creating new rooms, deleting rooms), and setup
+  the navigation menu in order to switch from windows list to rooms list.
+
+Note : 
+
+- I used bootstrap to style the elements (+ some custom CSS when needed, as you can see in the component `WindowsListItem`).
+- In particular : for the navigation menu, I used <https://getbootstrap.com/docs/5.0/components/navs-tabs/#tabs>, check 
+  bootstrap documentation to see which classes to use to make visual feedback on the navigation
+- This lecture was short and glossed over the in depths of Vue. Follow the Vue.js official guides if you want to be more comfortable with Vue
+
+---
+
+# Assignment
+
+Optionnal features : 
+
+- Polishing your interface : visual feedback on errors, loading animations. You can use Chrome Developper Tools to simulate a slow
+  internet connection (under the tab "Network", Set the "Throttling" dropdown to "Slow 3G").
+- Adding a way to rename windows and rooms
+- Any other features you want to do (depending on the capabilities of your API)
+
+To go further you can check :
+
+- How to perform routing in your frontend (Single Page Application) with Vue Router <https://router.vuejs.org/>
+- You may use 3rd party libraries, for example [vue-toasted](https://github.com/shakee93/vue-toasted) to display notification messages
+  (feedback on errors for example)
+
+
+---
+
+# Assignment Delivery
+
+You must send me a link to a git repository with your solution to the assignment. The git repository must contain a `README.md`
+with clear instructions in order for someone cloning the repository to be able to run the frontend without issues.
+
+I suggest you configure your frontend to use an online version of your API, this way the end user doesn't have to setup
+your API locally in order to test your frontend.
+
+The frontend is only expected to run locally, I don't ask you to deploy it online. (Although, the ones that are interested to do so
+may look how to easily deploy a Vue application with [gitlab pages](https://cli.vuejs.org/guide/deployment.html#gitlab-pages)).
+
+Send this to qrichaud.pro@gmail.com by January the 18th.
