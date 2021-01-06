@@ -484,7 +484,7 @@ In a real world app :
 
 # Assignment
 
-The assignment is due on wednesday, January the 13th.
+The assignment is due on thursday, January the 14th, at midnignt (evening).
 
 You will work in groups of 3. Register your groups of work here : <https://docs.google.com/spreadsheets/d/16LaaPem10MlZlZ5mOGlRzWxZM9DHsk24gNPkUaN2oz8/edit#gid=0>
 
@@ -542,4 +542,4 @@ your API locally in order to test your frontend.
 The frontend is only expected to run locally, I don't ask you to deploy it online. (Although, the ones that are interested to do so
 may look how to easily deploy a Vue application with [gitlab pages](https://cli.vuejs.org/guide/deployment.html#gitlab-pages)).
 
-Send this to qrichaud.pro@gmail.com by January the 13th.
+Send this to qrichaud.pro@gmail.com by January the 14th evening.
